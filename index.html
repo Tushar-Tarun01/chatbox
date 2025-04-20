@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chatbox: Nix & Tarun</title>
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      --chat-bg: #fff;
+      --text: #000;
+      --nix-bg: #d0f0fd;
+      --tarun-bg: #ffe0b3;
+    }
+    body.dark {
+      --bg: #121212;
+      --chat-bg: #1f1f1f;
+      --text: #eee;
+      --nix-bg: #2a9df4;
+      --tarun-bg: #f4c542;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+      overflow: hidden;
+      color: var(--text);
+    }
+    .chat-container {
+      background: var(--chat-bg);
+      padding: 20px;
+      width: 450px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #main-timer {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      background: rgba(240,240,240,0.8);
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: #fafafa;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+    .message {
+      margin: 10px 0;
+      padding: 10px 14px;
+      border-radius: 14px;
+      max-width: 70%;
+      position: relative;
+      clear: both;
+      opacity: 0;
+      animation: popIn 0.4s ease forwards;
+      animation-delay: 0.2s;
+    }
+    .nix { float: left; background: var(--nix-bg); }
+    .tarun { float: right; background: var(--tarun-bg); text-align: right; }
+    .timer {
+      font-size: 10px;
+      position: absolute;
+      bottom: -16px;
+      right: 10px;
+      color: gray;
+    }
+    .input-section {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+    select, button {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s infinite ease-in;
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(1) rotate(45deg); opacity: 0.7; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(45deg); opacity: 0; }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts"></div>
+  <div class="chat-container">
+    <div id="main-timer">00:00</div>
+    <h2>Chatbox: Nix & Tarun</h2>
+    <div id="chat-box" class="chat-box"></div>
+    <div class="input-section">
+      <select id="user-select">
+        <option value="Nix">Nix</option>
+        <option value="Tarun">Tarun</option>
+      </select>
+      <input type="text" id="message-input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+      <button onclick="toggleDark()">🌓</button>
+    </div>
+  </div>
+  <script src="script.js">
+    
+  </script>
+</body>
+</html>
